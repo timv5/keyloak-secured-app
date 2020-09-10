@@ -1,0 +1,29 @@
+version: '3'
+
+networks:
+  keycloak-proxy:
+    driver: bridge
+
+services:
+
+  backend-app:
+    build:
+      context: ./backend-app
+      dockerfile: .Dockerfile
+    container_name: backend-app
+    networks:
+      - keycloak-proxy
+    ports:
+      - 8081:8081
+
+  frontend-app:
+    build:
+      context: ./frontend-app
+      dockerfile: .Dockerfile
+    container_name: frontend-app
+    networks:
+      - keycloak-proxy
+    ports:
+      - 4200:80
+    depends_on:
+      - backend-app
