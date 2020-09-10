@@ -1,2 +1,12 @@
 server:
   port: 8081
+
+keycloak:
+  realm: put_your_own
+  auth-server-url: http://localhost:8080/auth
+  ssl-required: external
+  resource: put_your_own
+  credentials:
+    secret: put_your_own
+  use-resource-role-mappings: true
+  bearer-only: true
